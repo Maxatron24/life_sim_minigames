@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmsibudkuuprq"]
+
+[ext_resource type="Script" path="res://scripts/Wood Chopping Scripts/click_spot.gd" id="1_es1ro"]
+[ext_resource type="Texture2D" uid="uid://bj6d6ec40soni" path="res://assets/click_spot.png" id="1_wg675"]
+
+[node name="ClickSpot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_es1ro")
+
+[node name="ClickSpotSprite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -38.0
+offset_right = 13.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_wg675")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

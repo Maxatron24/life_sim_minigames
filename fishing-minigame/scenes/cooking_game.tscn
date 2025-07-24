@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmv48lkdqidp0"]
+
+[ext_resource type="Script" path="res://scripts/Cooking Scripts/cooking_game.gd" id="1_n4rli"]
+[ext_resource type="Script" path="res://scripts/Cooking Scripts/cooking.gd" id="1_oc06c"]
+
+[node name="CookingGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n4rli")
+
+[node name="CookingMenu" type="CanvasLayer" parent="."]
+
+[node name="Cooking" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_oc06c")
+
+[connection signal="game_over" from="Cooking" to="." method="_on_cooking_game_over"]

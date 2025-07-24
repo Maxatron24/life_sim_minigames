@@ -1,0 +1,313 @@
+[gd_scene load_steps=22 format=3 uid="uid://drv3r63exlhf6"]
+
+[ext_resource type="Script" path="res://scripts/Fishing Scripts/fish_health.gd" id="1_7njxo"]
+[ext_resource type="Script" path="res://scripts/Fishing Scripts/game_manager.gd" id="1_nxc08"]
+[ext_resource type="Script" path="res://scripts/Fishing Scripts/fishing.gd" id="1_u3nkx"]
+[ext_resource type="Script" path="res://scripts/Fishing Scripts/menu_ui.gd" id="1_uw81j"]
+[ext_resource type="Script" path="res://scripts/Fish/Perch.gd" id="2_p0bxa"]
+[ext_resource type="Texture2D" uid="uid://o7hujib3tmba" path="res://assets/rod_background.png" id="3_f4lk8"]
+[ext_resource type="Texture2D" uid="uid://blppmew2yjpwm" path="res://assets/rod_empty.png" id="3_qrykb"]
+[ext_resource type="Script" path="res://scripts/Fish/Salmon.gd" id="3_ycoip"]
+[ext_resource type="Texture2D" uid="uid://cwjrx1l1u45jn" path="res://assets/rod_fill.png" id="4_0jsg6"]
+[ext_resource type="Script" path="res://scripts/Fish/Crab.gd" id="4_rm5g3"]
+[ext_resource type="Script" path="res://scripts/Fish/Shark.gd" id="5_bqj2s"]
+[ext_resource type="Script" path="res://scripts/Fish/Chub.gd" id="7_nx054"]
+[ext_resource type="Script" path="res://scripts/Fish/Walleye.gd" id="8_ex60v"]
+[ext_resource type="Script" path="res://scripts/Fish/Catfish.gd" id="8_nnvl0"]
+[ext_resource type="Script" path="res://scripts/Fish/Sturgeon.gd" id="9_qkdf1"]
+[ext_resource type="Script" path="res://scripts/Fish/Tuna.gd" id="11_5kxjw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2u21p"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_no5oq"]
+font_size = 34
+font_color = Color(7.568, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i261b"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_ydo6e"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_w4kb0"]
+font_size = 29
+
+[node name="FishingGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nxc08")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.407843)
+
+[node name="FishingMenu" type="CanvasLayer" parent="."]
+script = ExtResource("1_uw81j")
+
+[node name="RodButton" type="OptionButton" parent="FishingMenu"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = -39.0
+offset_right = 266.0
+offset_bottom = 39.0
+grow_vertical = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Wooden Rod"
+popup/item_1/text = "Metal Rod"
+popup/item_1/id = 1
+popup/item_2/text = "Carbon Fibre Rod"
+popup/item_2/id = 2
+
+[node name="LocationButton" type="OptionButton" parent="FishingMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -39.0
+offset_right = 83.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "River"
+popup/item_1/text = "Lake"
+popup/item_1/id = 1
+popup/item_2/text = "Ocean"
+popup/item_2/id = 2
+
+[node name="DifficultyButton" type="OptionButton" parent="FishingMenu"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = -39.0
+offset_right = -100.0
+offset_bottom = 39.0
+grow_horizontal = 0
+grow_vertical = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+
+[node name="Start Button" type="Button" parent="FishingMenu"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -123.0
+offset_right = -94.0
+offset_bottom = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "START"
+
+[node name="Label" type="Label" parent="FishingMenu"]
+offset_left = 128.0
+offset_top = 30.0
+offset_right = 979.0
+offset_bottom = 156.0
+text = "Pick Your Settings"
+label_settings = SubResource("LabelSettings_2u21p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="FishingMenu"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -245.0
+offset_top = -181.0
+offset_right = -102.0
+offset_bottom = -150.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Auto-Clicker"
+
+[node name="Fishing" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_u3nkx")
+
+[node name="LevelLayer" type="CanvasLayer" parent="Fishing"]
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="Fishing/LevelLayer"]
+
+[node name="FishHealth" type="TextureProgressBar" parent="Fishing/LevelLayer/InterfaceLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -511.0
+offset_top = -324.0
+offset_right = -11.0
+offset_bottom = 176.0
+grow_vertical = 2
+rotation = -0.872665
+pivot_offset = Vector2(250, 250)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+step = 0.25
+value = 50.0
+fill_mode = 3
+radial_initial_angle = 270.0
+radial_fill_degrees = 90.0
+radial_center_offset = Vector2(80.485, 107)
+texture_under = ExtResource("3_qrykb")
+texture_over = ExtResource("3_f4lk8")
+texture_progress = ExtResource("4_0jsg6")
+texture_progress_offset = Vector2(199, 54)
+script = ExtResource("1_7njxo")
+
+[node name="Label" type="Label" parent="Fishing/LevelLayer/InterfaceLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.0
+offset_top = -128.0
+offset_right = 271.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have a fish on the line!
+Click left-mouse button to begin.
+
+Controls:
+Spam Left-Click to Reel
+DO NOT click during relax phase.
+Right-Click to cut line"
+label_settings = SubResource("LabelSettings_no5oq")
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="Fishing/LevelLayer/InterfaceLayer"]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 313.0
+offset_top = -107.0
+offset_right = 493.0
+offset_bottom = -44.0
+grow_vertical = 2
+text = "Relax!"
+label_settings = SubResource("LabelSettings_i261b")
+horizontal_alignment = 1
+
+[node name="Counter" type="Label" parent="Fishing/LevelLayer/InterfaceLayer"]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 340.0
+offset_top = -55.0
+offset_right = 477.0
+offset_bottom = 10.0
+grow_vertical = 2
+text = "00:00s"
+label_settings = SubResource("LabelSettings_ydo6e")
+horizontal_alignment = 1
+
+[node name="Overall" type="Label" parent="Fishing/LevelLayer/InterfaceLayer"]
+visible = false
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 381.0
+offset_top = -138.0
+offset_right = 421.0
+offset_bottom = -98.0
+grow_vertical = 2
+text = "60"
+label_settings = SubResource("LabelSettings_w4kb0")
+horizontal_alignment = 1
+
+[node name="Perch" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("2_p0bxa")
+
+[node name="Salmon" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("3_ycoip")
+
+[node name="Catfish" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("8_nnvl0")
+
+[node name="Chub" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("7_nx054")
+
+[node name="Walleye" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("8_ex60v")
+
+[node name="Sturgeon" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("9_qkdf1")
+
+[node name="Crab" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("4_rm5g3")
+
+[node name="Tuna" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("11_5kxjw")
+
+[node name="Shark" type="Node" parent="Fishing/LevelLayer"]
+script = ExtResource("5_bqj2s")
+
+[node name="FishTimer" type="Timer" parent="Fishing"]
+autostart = true
+
+[node name="CooldownTimer" type="Timer" parent="Fishing"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ClicksPerSecond" type="Timer" parent="Fishing"]
+wait_time = 0.2
+
+[node name="RestTimer" type="Timer" parent="Fishing"]
+one_shot = true
+
+[node name="ReelTimer" type="Timer" parent="Fishing"]
+
+[node name="StartTimer" type="Timer" parent="Fishing"]
+wait_time = 3.0
+one_shot = true
+
+[node name="OverallTimer" type="Timer" parent="Fishing"]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="item_selected" from="FishingMenu/RodButton" to="FishingMenu" method="_on_rod_button_item_selected"]
+[connection signal="item_selected" from="FishingMenu/LocationButton" to="FishingMenu" method="_on_location_button_item_selected"]
+[connection signal="item_selected" from="FishingMenu/DifficultyButton" to="FishingMenu" method="_on_difficulty_button_item_selected"]
+[connection signal="pressed" from="FishingMenu/Start Button" to="FishingMenu" method="_on_start_button_pressed"]
+[connection signal="game_over" from="Fishing" to="." method="_on_fishing_game_over"]
+[connection signal="tree_entered" from="Fishing" to="Fishing" method="_on_tree_entered"]
+[connection signal="timeout" from="Fishing/FishTimer" to="Fishing" method="_on_timer_timeout"]
+[connection signal="timeout" from="Fishing/CooldownTimer" to="Fishing" method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="Fishing/ClicksPerSecond" to="Fishing" method="_on_clicks_per_second_timeout"]
+[connection signal="timeout" from="Fishing/RestTimer" to="Fishing" method="_on_rest_timer_timeout"]
+[connection signal="timeout" from="Fishing/ReelTimer" to="Fishing" method="_on_reel_timer_timeout"]
+[connection signal="timeout" from="Fishing/StartTimer" to="Fishing" method="_on_start_timer_timeout"]
+[connection signal="timeout" from="Fishing/OverallTimer" to="Fishing" method="_on_overall_timer_timeout"]

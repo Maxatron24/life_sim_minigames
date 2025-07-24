@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://goqkv8bwvar6"]
+
+[ext_resource type="Texture2D" uid="uid://er2tvsxudtg0" path="res://assets/Tree.png" id="1_6kwyv"]
+[ext_resource type="Script" path="res://scripts/Wood Chopping Scripts/game.gd" id="1_lc80j"]
+[ext_resource type="Texture2D" uid="uid://cqgow7sv6qh6i" path="res://assets/border.png" id="2_rprpi"]
+
+[node name="ChoppingGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Game" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lc80j")
+
+[node name="CenterContainer" type="CenterContainer" parent="Game"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 81.0
+offset_top = -232.5
+offset_right = 441.0
+offset_bottom = 247.5
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Game/CenterContainer"]
+custom_minimum_size = Vector2(360, 480)
+layout_mode = 2
+color = Color(0, 0, 0, 0.447059)
+
+[node name="Sprite2D" type="Sprite2D" parent="Game/CenterContainer"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_6kwyv")
+centered = false
+
+[node name="Border" type="Sprite2D" parent="Game/CenterContainer"]
+self_modulate = Color(0.337255, 0.2, 0.0862745, 1)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_rprpi")
+centered = false
+
+[node name="TargetArea" type="ReferenceRect" parent="Game"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 115.0
+offset_top = -172.0
+offset_right = 394.0
+offset_bottom = 247.0
+grow_vertical = 2
+border_width = 0.0
+
+[node name="SpawnTimer" type="Timer" parent="Game"]
+wait_time = 0.5
+autostart = true
+
+[node name="OverallTimer" type="Timer" parent="Game"]
+wait_time = 5.0
+
+[connection signal="child_exiting_tree" from="Game" to="Game" method="_on_child_exiting_tree"]
+[connection signal="timeout" from="Game/SpawnTimer" to="Game" method="_on_spawn_timer_timeout"]

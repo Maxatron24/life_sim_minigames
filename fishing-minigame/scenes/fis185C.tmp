@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://drv3r63exlhf6"]
+
+[ext_resource type="Script" path="res://scripts/fish_health.gd" id="1_7njxo"]
+[ext_resource type="Script" path="res://scripts/fishing.gd" id="1_u3nkx"]
+[ext_resource type="Script" path="res://scripts/fish.gd" id="2_p0bxa"]
+[ext_resource type="Script" path="res://scripts/fish2.gd" id="3_ycoip"]
+[ext_resource type="Script" path="res://scripts/Crab.gd" id="4_rm5g3"]
+[ext_resource type="Script" path="res://scripts/Shark.gd" id="5_bqj2s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvvwn"]
+bg_color = Color(1, 0, 0, 0.509804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0xv4"]
+bg_color = Color(0.368269, 0.627614, 0.24444, 1)
+
+[node name="Fishing" type="Node2D"]
+script = ExtResource("1_u3nkx")
+
+[node name="LevelLayer" type="CanvasLayer" parent="."]
+
+[node name="Trout" type="Node" parent="LevelLayer"]
+script = ExtResource("2_p0bxa")
+
+[node name="Salmon" type="Node" parent="LevelLayer"]
+script = ExtResource("3_ycoip")
+
+[node name="Crab" type="Node" parent="LevelLayer"]
+script = ExtResource("4_rm5g3")
+
+[node name="Shark" type="Node" parent="LevelLayer"]
+script = ExtResource("5_bqj2s")
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="LevelLayer"]
+
+[node name="FishHealth" type="ProgressBar" parent="LevelLayer/InterfaceLayer"]
+z_index = 1
+offset_left = 185.0
+offset_top = 425.0
+offset_right = 386.0
+offset_bottom = 460.0
+rotation = -1.5708
+theme_override_styles/background = SubResource("StyleBoxFlat_gvvwn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_w0xv4")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_7njxo")

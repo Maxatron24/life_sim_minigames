@@ -1,0 +1,238 @@
+[gd_scene load_steps=13 format=3 uid="uid://goqkv8bwvar6"]
+
+[ext_resource type="Texture2D" uid="uid://er2tvsxudtg0" path="res://assets/Tree.png" id="1_6kwyv"]
+[ext_resource type="Script" path="res://scripts/Wood Chopping Scripts/game.gd" id="1_lc80j"]
+[ext_resource type="Texture2D" uid="uid://bj6d6ec40soni" path="res://assets/click_spot.png" id="1_nliuh"]
+[ext_resource type="Script" path="res://scripts/Wood Chopping Scripts/chopping_game.gd" id="1_pga24"]
+[ext_resource type="Script" path="res://scripts/Wood Chopping Scripts/chopping_menu.gd" id="2_2o4mw"]
+[ext_resource type="Script" path="res://scripts/Wood Chopping Scripts/sprite_2d.gd" id="5_rvvp5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ibb25"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_t8wjn"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_0conq"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_s27up"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4o1a"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2cjj"]
+font_size = 45
+
+[node name="ChoppingGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pga24")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.466667)
+
+[node name="ChoppingMenu" type="CanvasLayer" parent="."]
+script = ExtResource("2_2o4mw")
+
+[node name="OptionButton" type="OptionButton" parent="ChoppingMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -4.0
+offset_right = 69.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+selected = 0
+item_count = 5
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+popup/item_4/text = "5"
+popup/item_4/id = 4
+
+[node name="Label" type="Label" parent="ChoppingMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -144.0
+offset_right = 197.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pick Your Axe Tier
+Higher = Better"
+label_settings = SubResource("LabelSettings_ibb25")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ChoppingMenu"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -221.0
+offset_top = -135.0
+offset_right = -81.0
+offset_bottom = -58.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "START "
+
+[node name="Game" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lc80j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Game"]
+position = Vector2(253, 451)
+scale = Vector2(0.928333, 1.02375)
+texture = ExtResource("1_6kwyv")
+offset = Vector2(0, -141.255)
+script = ExtResource("5_rvvp5")
+
+[node name="TargetArea" type="ReferenceRect" parent="Game"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 62.0
+offset_top = -263.0
+offset_right = 421.0
+offset_bottom = 271.0
+grow_vertical = 2
+border_width = 0.0
+
+[node name="SpawnTimer" type="Timer" parent="Game"]
+wait_time = 0.75
+
+[node name="OverallTimer" type="Timer" parent="Game"]
+wait_time = 7.0
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="Game"]
+wait_time = 3.0
+one_shot = true
+
+[node name="OverallTimerLabel" type="Label" parent="Game"]
+visible = false
+layout_mode = 0
+offset_left = 445.0
+offset_top = 256.0
+offset_right = 536.0
+offset_bottom = 319.0
+text = "0.0"
+label_settings = SubResource("LabelSettings_t8wjn")
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="Game"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -236.0
+offset_top = -173.0
+offset_right = 271.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click on the
+when they appear
+
+Left-Click to begin
+<-- Game will start here"
+label_settings = SubResource("LabelSettings_0conq")
+
+[node name="ClickSpot" type="Sprite2D" parent="Game/Instructions"]
+position = Vector2(311, 36)
+texture = ExtResource("1_nliuh")
+
+[node name="FinalScore" type="Label" parent="Game"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_s27up")
+horizontal_alignment = 1
+
+[node name="WaitTimerLabel" type="Label" parent="Game"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -31.5
+offset_right = 20.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_a4o1a")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Game"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -84.0
+offset_right = 56.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wait!"
+label_settings = SubResource("LabelSettings_g2cjj")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ChoppingMenu/Button" to="ChoppingMenu" method="_on_button_pressed"]
+[connection signal="child_exiting_tree" from="Game" to="Game" method="_on_child_exiting_tree"]
+[connection signal="game_over" from="Game" to="." method="_on_game_game_over"]
+[connection signal="timeout" from="Game/SpawnTimer" to="Game" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Game/OverallTimer" to="Game" method="_on_overall_timer_timeout"]
+[connection signal="timeout" from="Game/WaitTimer" to="Game" method="_on_wait_timer_timeout"]
